@@ -1,10 +1,10 @@
 # YouTube-Comment-Translate
 
 ## Usage
-![](res/usage.gif)
+![](docs/usage.gif)
 
 ## Installation
-[Download](YouTube-Comment-Translate/releases/latest/) and extract the newest release.
+[Download](../../releases/latest/) and extract the newest release.
 
 ### Chromium Browsers
 
@@ -22,3 +22,6 @@ Navigate to the folder you extracted to and click `open`. Disable `Developer mod
 
 #### Firefox
 Added soon ...
+
+## Changelog
+[Click here](docs/CHANGELOG.md)
