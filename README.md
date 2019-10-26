@@ -10,11 +10,12 @@
 
 #### Chrome, Chromium
 Go to chrome://extensions/.
-Enable `Developer mode` and click on `Load unpacked`.
-Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
 
 #### Opera
 Go to opera:extensions.
+
+---
+
 Enable `Developer mode` and click on `Load unpacked`.
 Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
 
