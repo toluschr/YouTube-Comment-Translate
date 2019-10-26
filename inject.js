@@ -52,7 +52,7 @@
 		this.DOM.id = "translate-button";
 		this.DOM.style = "margin-left: 5px";
 		this.DOM_Text = main.querySelector(QS_CONTENT_TEXT);
-		this.originalHTML = this.DOM_Text.innerText; // This isn't an issue
+		this.originalHTML = this.DOM_Text.innerHTML;
 		this.newText = "";
 
 		this.DOM.innerText = TRANSLATE_TEXT;
