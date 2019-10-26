@@ -96,9 +96,7 @@
 		let repliesRenderer = commentThreadRenderer.querySelector(QS_REPLIES_RENDERER);
 		
 		let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
-		if (oldTb != null) {
-			oldTb.parentNode.removeChild(oldTb);
-		}
+		if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
 		new TranslateButton(main);
 
 		if (isReply || repliesRenderer == null) return;
