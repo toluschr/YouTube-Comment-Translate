@@ -7,7 +7,7 @@
 
 	/* Query Selectors */
 	// From document
-	const QS_COMMENTS = "ytd-comments>ytd-item-section-renderer>div#contents";
+	const QS_COMMENTS = "ytd-comments>ytd-item-section-renderer>div#contents, #loaded-comments";
 	// From "ytd-comment-thread-renderer"
 	const QS_COMMENT_MAIN = "#comment>#body>#main";
 	// From "ytd-comment-thread-renderer"
