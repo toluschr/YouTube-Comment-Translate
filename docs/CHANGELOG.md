@@ -24,3 +24,5 @@
 	- Fixed the bug, that undo only restores the first line
 	- Repo init
 	- Fixed the bug, that YouTube autoplay breaks some comments
+#### 0.6.3:
+	- Fixed the bug, that undo doesn't correctly restore URL's
