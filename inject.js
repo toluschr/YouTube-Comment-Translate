@@ -29,7 +29,7 @@
 		let comments = document.querySelector(QS_COMMENTS);
 
 		if (comments == null) {
-			setTimeout(() => { inject(); }, 100);
+			setTimeout(() => { inject(); }, 50);
 			return;
 		}
 
