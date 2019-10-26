@@ -12,7 +12,7 @@
 Go to chrome://extensions/.
 
 #### Opera
-Go to opera:extensions.
+Go to opera:extensions.</br>
 ---
 Enable `Developer mode` and click on `Load unpacked`.
 Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
