@@ -23,3 +23,4 @@
 #### 0.6.2:
 	- Fixed the bug, that undo only restores the first line
 	- Repo init
+	- Fixed the bug, that YouTube autoplay breaks some comments

@@ -55,7 +55,8 @@
 		this.originalHTML = this.DOM_Text.innerText; // This isn't an issue
 		this.newText = "";
 
-		TranslateButton_SetState(this);
+		this.DOM.innerText = TRANSLATE_TEXT;
+		this.DOM.onclick = () => { TranslateButton_Translate(this); };
 		main.querySelector(QS_BUTTON_CONTAINER).appendChild(this.DOM);
 	}
 
@@ -94,7 +95,11 @@
 		let main = commentThreadRenderer.querySelector(isReply ? QS_REPLY_MAIN : QS_COMMENT_MAIN);
 		let repliesRenderer = commentThreadRenderer.querySelector(QS_REPLIES_RENDERER);
 		
-		if (main.querySelector(QS_TRANSLATE_BUTTON) == null) new TranslateButton(main);
+		let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
+		if (oldTb != null) {
+			oldTb.parentNode.removeChild(oldTb);
+		}
+		new TranslateButton(main);
 
 		if (isReply || repliesRenderer == null) return;
 		addSectionListener(repliesRenderer.querySelector(QS_LOADED_REPLIES), true);
