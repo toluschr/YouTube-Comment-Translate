@@ -9,11 +9,10 @@
 ### Chromium Browsers
 
 #### Chrome, Chromium
-Go to [chrome://extensions/](chrome://extensions/).
+Go to [chrome://extensions/](chrome://extensions/)
 
 #### Opera 
-Go to [opera:extensions](opera:extensions).\
-
+Go to [opera:extensions](opera:extensions) <br/>
 Enable `Developer mode` and click on `Load unpacked`.
 Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
 
