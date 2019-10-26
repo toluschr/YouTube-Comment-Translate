@@ -1,15 +1,19 @@
 {
 	"name": "YouTube comment translator",
-	"version": "0.6.3",
+	"version": "0.7.0",
 	"description": "Automatically translate YouTube comments using the GoogleTranslate API",
 	"content_scripts": [
 		{
-			"matches": ["https://www.youtube.com/watch?v=*"],
+			"matches": [
+				"https://www.youtube.com/watch?v=*",
+				"https://www.youtube.com/channel/*/community*"
+			],
 			"js": ["inject.js"]
 		}
 	],
 	"permissions": [
-		"https://www.youtube.com/watch?v=*"
+		"https://www.youtube.com/watch?v=*",
+		"https://www.youtube.com/channel/*/community*"
 	],
 	"manifest_version": 2
 }
