@@ -11,7 +11,7 @@
 #### Chrome, Chromium
 Go to chrome://extensions/.
 
-#### Opera 
+#### Opera
 Go to opera:extensions.
 ---
 Enable `Developer mode` and click on `Load unpacked`.
