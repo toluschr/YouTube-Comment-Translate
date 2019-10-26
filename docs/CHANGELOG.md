@@ -26,3 +26,5 @@
 	- Fixed the bug, that YouTube autoplay breaks some comments
 #### 0.6.3:
 	- Fixed the bug, that undo doesn't correctly restore URL's
+#### 0.7.0:
+	- Added support for YouTube community posts
