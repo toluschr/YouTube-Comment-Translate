@@ -39,6 +39,7 @@ Open the following url in your browser
 		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/google-chrome.svg" title="Chrome"></td>
 		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/opera.svg" title="Opera"></td>
 		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/brave.svg" title="Brave"></td>
+		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/vivaldi.svg" title="Brave"></td>
 	</tr>
 	<tr>
 		<td align="right"><b>Url</b></td>
@@ -46,6 +47,7 @@ Open the following url in your browser
 		<td align="center">chrome://extensions</td>
 		<td align="center">opera:extensions</td>
 		<td align="center">chrome://extensions</td>
+		<td align="center">vivaldi://extensions</td>
 	</tr>
 </table>
 
