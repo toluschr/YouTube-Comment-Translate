@@ -25,7 +25,9 @@ The default language is english (en). To change it, open `inject.js` in a text e
 
 ### Javascript injector
 Since this script was made to be injected from the browsers developer console. One can simply use a [Javascript injector](https://github.com/Lor-Saba/Code-Injector). This is also the recommended method for firefox users.
-`www\.youtube\.com\/watch\?v=.*|www\.youtube\.com\/channel\/.*\/community.*`
+Use this pattern
+<img src="docs/injector.png">
+`www\.youtube\.com`
 
 ### Chromium Browsers
 
@@ -58,7 +60,6 @@ Navigate to the folder you extracted to and click `open`. Disable `Developer mod
 <img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg">
 
 Use any javascript injector and paste `inject.js` into it.
-<img src="docs/firefox.png">
 
 ## Changelog
 [Click here](docs/CHANGELOG.md)
