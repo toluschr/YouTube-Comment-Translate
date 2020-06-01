@@ -28,3 +28,5 @@
 	- Fixed the bug, that undo doesn't correctly restore URL's
 #### 0.7.0:
 	- Added support for YouTube community posts
+	- Added support for firefox
+	- Updated readme to clarify usage of a javascript injector
