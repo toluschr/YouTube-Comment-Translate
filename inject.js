@@ -25,23 +25,32 @@
 
 	/* Functions */
 	// Inject as soon as the comment section was loaded
-	(function inject () {
+	function inject () {
 		let comments = document.querySelector(QS_COMMENTS);
 
-		if (comments == null) {
-			setTimeout(() => { inject(); }, 50);
-			return;
-		}
+		if (comments == null) setTimeout(inject, 50);
+		else addSectionListener(comments);
+	}
 
-		addSectionListener(comments);
-	})(); // Immediately call this function
+	window.addEventListener("load", inject);
 
 	// Listen for new Comments
 	function addSectionListener(section, isReply = false) {
 		section.addEventListener("DOMNodeInserted", (event) => {
-			if (event.relatedNode != section) return;
+			if (event.relatedNode != section || !(event.target instanceof HTMLElement))
+				return;
 
-			setTimeout(() => { CommentThreadRenderer_AddTranslateButtons(event.target, isReply); }, 1);
+			setTimeout(() => {
+				let main = event.target.querySelector(isReply ? QS_REPLY_MAIN : QS_COMMENT_MAIN);
+				let replies = event.target.querySelector(QS_REPLIES_RENDERER);
+
+				let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
+				if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
+				new TranslateButton(main);
+
+				if (isReply || replies == null) return;
+				addSectionListener(replies.querySelector(QS_LOADED_REPLIES), true);
+			}, 1);
 		});
 	}
 
@@ -75,31 +84,15 @@
 	}
 
 	// Actual Code to translate
-	function TranslateButton_Translate (tb) {
+	async function TranslateButton_Translate (tb) {
 		if (tb.newText.length == 0) {
-			let req = new XMLHttpRequest();
-			
-			req.open("GET", URL + encodeURI(tb.DOM_Text.innerText), false);
-			req.send();
-
-			let json = JSON.parse(req.responseText)[0];
-			for (let i = 0; i < json.length; i++) {
-				tb.newText += json[i][0];
-			}
+			await fetch(URL + encodeURI(tb.DOM_Text.innerText))
+				.then(response => response.json())
+				.then(json => {
+					for (let i = 0; i < json[0].length; i++)
+						tb.newText += json[0][i][0];
+				});
 		}
 		TranslateButton_SetState(tb);
-	}
-
-	// Add Buttons to Comment Thread (And comments)
-	function CommentThreadRenderer_AddTranslateButtons (commentThreadRenderer, isReply) {
-		let main = commentThreadRenderer.querySelector(isReply ? QS_REPLY_MAIN : QS_COMMENT_MAIN);
-		let repliesRenderer = commentThreadRenderer.querySelector(QS_REPLIES_RENDERER);
-		
-		let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
-		if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
-		new TranslateButton(main);
-
-		if (isReply || repliesRenderer == null) return;
-		addSectionListener(repliesRenderer.querySelector(QS_LOADED_REPLIES), true);
 	}
 })();

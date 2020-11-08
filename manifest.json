@@ -8,6 +8,7 @@
 				"https://www.youtube.com/watch?v=*",
 				"https://www.youtube.com/channel/*/community*"
 			],
+			"run_at": "document_end",
 			"js": ["inject.js"]
 		}
 	],
