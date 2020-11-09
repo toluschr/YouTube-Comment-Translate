@@ -9,7 +9,6 @@
 	* [Chromium Browsers](#chromium-browsers)
 	* [Other Browsers](#other-browsers)
 		* [Firefox](#firefox)
-* [Changelog](#changelog)
 
 <!-- vim-markdown-toc -->
 
@@ -62,9 +61,6 @@ Navigate to the folder you extracted to and click `open`. Disable `Developer mod
 <img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg">
 
 Use any javascript injector and paste `inject.js` into it.
-
-## Changelog
-[Click here](docs/CHANGELOG.md)
 
 ---
 
