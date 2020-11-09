@@ -1,9 +1,52 @@
 (function main () {
+	function TranslateButton_SetState() {
+		if (this.innerText == TRANSLATE_TEXT) {
+			this._text.innerText = this._newtext;
+			this.innerText = UNDO_TEXT;
+			this.onclick = this._set_state;
+		} else {
+			this._text.innerHTML = this._oldhtml;
+			this.innerText = TRANSLATE_TEXT;
+		}
+	}
+
+	function TranslateButton_Translate() {
+		this.onclick = undefined;
+		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURI(this._text.innerText)}`)
+			.then(response => response.json()).then(json => {
+				for (let i = 0; i < json[0].length; i++) this._newtext += json[0][i][0];
+				this._set_state();
+			});
+	}
+
+	function TranslateButton(main) {
+		let tb = document.createElement("a");
+		tb.classList = "yt-simple-endpoint style-scope yt-formatted-string";
+		tb.id = "translate-button";
+		tb.style = "margin-left: 5px";
+		tb._text = main.querySelector(QS_CONTENT_TEXT);
+		tb._oldhtml = tb._text.innerHTML;
+		tb._newtext = "";
+		tb._translate = TranslateButton_Translate;
+		tb._set_state = TranslateButton_SetState;
+
+		tb.innerText = TRANSLATE_TEXT;
+		tb.onclick = TranslateButton_Translate;
+		return tb;
+	}
+
 	/* User settings */
-	const TRANSLATE_TEXT = "translate";
-	const UNDO_TEXT = "undo";
-	const TARGET_LANGUAGE = "en";
-	const URL = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=" + TARGET_LANGUAGE + "&dt=t&q=";
+	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
+
+	if (chrome && chrome.storage)
+		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_language: TARGET}, items => {
+			TRANSLATE_TEXT = items.translate_text;
+			UNDO_TEXT = items.undo_text;
+			TARGET = items.target_language;
+			window.addEventListener("load", inject);
+		});
+	else
+		window.addEventListener("load", inject);
 
 	/* Query Selectors */
 	// From document
@@ -32,8 +75,6 @@
 		else addSectionListener(comments);
 	}
 
-	window.addEventListener("load", inject);
-
 	// Listen for new Comments
 	function addSectionListener(section, isReply = false) {
 		section.addEventListener("DOMNodeInserted", (event) => {
@@ -46,53 +87,12 @@
 
 				let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
 				if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
-				new TranslateButton(main);
+
+				main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
 
 				if (isReply || replies == null) return;
 				addSectionListener(replies.querySelector(QS_LOADED_REPLIES), true);
 			}, 1);
 		});
-	}
-
-	// New Translate Button
-	function TranslateButton (main) {
-		this.DOM = document.createElement("a");
-		this.DOM.classList = "yt-simple-endpoint style-scope yt-formatted-string";
-		this.DOM.id = "translate-button";
-		this.DOM.style = "margin-left: 5px";
-		this.DOM_Text = main.querySelector(QS_CONTENT_TEXT);
-		this.originalHTML = this.DOM_Text.innerHTML;
-		this.newText = "";
-
-		this.DOM.innerText = TRANSLATE_TEXT;
-		this.DOM.onclick = () => { TranslateButton_Translate(this); };
-		main.querySelector(QS_BUTTON_CONTAINER).appendChild(this.DOM);
-	}
-
-	// Set the state
-	function TranslateButton_SetState (tb) {
-		if (tb.DOM.innerText != TRANSLATE_TEXT) {
-			tb.DOM_Text.innerHTML = tb.originalHTML;
-			tb.DOM.innerText = TRANSLATE_TEXT;
-			tb.DOM.onclick = () => { TranslateButton_Translate(tb); };
-		}
-		else {
-			tb.DOM_Text.innerText = tb.newText;
-			tb.DOM.innerText = UNDO_TEXT;
-			tb.DOM.onclick = () => { TranslateButton_SetState(tb); };
-		}
-	}
-
-	// Actual Code to translate
-	async function TranslateButton_Translate (tb) {
-		if (tb.newText.length == 0) {
-			await fetch(URL + encodeURI(tb.DOM_Text.innerText))
-				.then(response => response.json())
-				.then(json => {
-					for (let i = 0; i < json[0].length; i++)
-						tb.newText += json[0][i][0];
-				});
-		}
-		TranslateButton_SetState(tb);
 	}
 })();
