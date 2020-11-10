@@ -5,8 +5,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://www.youtube.com/watch?v=*",
-				"https://www.youtube.com/channel/*/community*"
+				"https://www.youtube.com/*"
 			],
 			"run_at": "document_end",
 			"js": ["inject.js"]
