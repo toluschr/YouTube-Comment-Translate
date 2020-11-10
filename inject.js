@@ -56,7 +56,7 @@
 	/* User settings */
 	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
 
-	if (typeof chrome !== "undefined")
+	if (typeof(chrome) !== "undefined" && typeof(chrome.storage) != "undefined")
 		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_language: TARGET}, items => {
 			TRANSLATE_TEXT = items.translate_text;
 			UNDO_TEXT = items.undo_text;
