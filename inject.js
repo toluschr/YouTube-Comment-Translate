@@ -35,19 +35,6 @@
 		return tb;
 	}
 
-	/* User settings */
-	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
-
-	if (chrome && chrome.storage)
-		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_language: TARGET}, items => {
-			TRANSLATE_TEXT = items.translate_text;
-			UNDO_TEXT = items.undo_text;
-			TARGET = items.target_language;
-			window.addEventListener("load", inject);
-		});
-	else
-		window.addEventListener("load", inject);
-
 	/* Query Selectors */
 	// From document
 	const QS_COMMENTS = "ytd-comments>ytd-item-section-renderer>div#contents, #loaded-comments";
@@ -65,6 +52,19 @@
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string";
 	// From commentThreadRenderer
 	const QS_REPLIES_RENDERER = "#replies>.style-scope";
+
+	/* User settings */
+	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
+
+	if (typeof chrome !== "undefined")
+		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_language: TARGET}, items => {
+			TRANSLATE_TEXT = items.translate_text;
+			UNDO_TEXT = items.undo_text;
+			TARGET = items.target_language;
+			window.addEventListener("load", inject);
+		});
+	else
+		inject();
 
 	/* Functions */
 	// Inject as soon as the comment section was loaded
