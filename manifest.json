@@ -13,8 +13,7 @@
 	],
 	"permissions": [
 		"storage",
-		"https://www.youtube.com/watch?v=*",
-		"https://www.youtube.com/channel/*/community*"
+		"https://www.youtube.com/*"
 	],
 	"options_ui": {
 		"page": "options.html",
