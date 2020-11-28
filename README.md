@@ -1,4 +1,12 @@
-# YouTube-Comment-Translate
+<p align="center"><img src="docs/icon.png"></p>
+<h1 align="center">YouTube-Comment-Translate</h1>
+
+<p align="center">
+	</br>
+		<a href="https://chrome.google.com/webstore/detail/youtube-comment-translate/alaejlmlpgcffloicejpccebbeeibemo">
+			<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">
+	</br></br>
+</p>
 
 <!-- vim-markdown-toc GFM -->
 
@@ -16,7 +24,8 @@
 <img src="docs/usage.gif">
 
 ### Changing the language
-The default language is english (en). To change it, open `inject.js` in a text editor and change line 5 (`TARGET_LANGUAGE`) to be the desired language.
+The default language is english (en). To change it, open the plugins setting page (`chrome://extensions/?options=alaejlmlpgcffloicejpccebbeeibemo`)
+and change the Target Language. Alternatively, if using the plugin via a JavaScript injector, manually edit `inject.js` and change line 5 (`TARGET_LANGUAGE`) to the desired language.
 [But what letters should I set it to?](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ## Installation
@@ -34,11 +43,11 @@ Open the following url in your browser
 <table>
 	<tr>
 		<td align="right"><b>Browser</b></td>
-		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/chromium-browser.svg" title="Chromium"></td>
-		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/google-chrome.svg" title="Chrome"></td>
-		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/opera.svg" title="Opera"></td>
-		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/brave.svg" title="Brave"></td>
-		<td align="center"><img src="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/blob/master/Papirus/48x48/apps/vivaldi.svg" title="Brave"></td>
+		<td align="center"><img src="https://raw.github.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/chromium-browser.svg" title="Chromium"></td>
+		<td align="center"><img src="https://raw.github.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/google-chrome.svg" title="Chrome"></td>
+		<td align="center"><img src="https://raw.github.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/opera.svg" title="Opera"></td>
+		<td align="center"><img src="https://raw.github.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/brave.svg" title="Brave"></td>
+		<td align="center"><img src="https://raw.github.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/vivaldi.svg" title="Brave"></td>
 	</tr>
 	<tr>
 		<td align="right"><b>Url</b></td>
