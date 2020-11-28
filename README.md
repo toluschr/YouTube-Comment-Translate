@@ -68,10 +68,16 @@ Navigate to the folder you extracted to and click `open`. Disable `Developer mod
 <table>
 	<tr>
 		<td align="right"><b>Browser</b></td>
-		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg"></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg" title="Firefox"></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/icecat.svg" title="IceCat"></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/waterfox.svg" title="Waterfox"></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/iceweasel.svg" title="IceWeasel"></td>
 	</tr>
 	<tr>
 		<td align="right"><b>Install</b></td>
+		<td align="center">JavaScript Injector</td>
+		<td align="center">JavaScript Injector</td>
+		<td align="center">JavaScript Injector</td>
 		<td align="center">JavaScript Injector</td>
 	</tr>
 </table>
