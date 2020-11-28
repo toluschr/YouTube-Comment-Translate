@@ -2,7 +2,7 @@
 <h1 align="center">YouTube-Comment-Translate</h1>
 
 <p align="center">
-	</br>
+	</br></br>
 		<a href="https://chrome.google.com/webstore/detail/youtube-comment-translate/alaejlmlpgcffloicejpccebbeeibemo">
 			<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">
 	</br></br>
@@ -13,6 +13,7 @@
 * [Usage](#usage)
 	* [Changing the language](#changing-the-language)
 * [Installation](#installation)
+* [Manual Install](#manual-install)
 	* [Javascript injector](#javascript-injector)
 	* [Chromium Browsers](#chromium-browsers)
 	* [Other Browsers](#other-browsers)
@@ -21,6 +22,7 @@
 <!-- vim-markdown-toc -->
 
 ## Usage
+After installing, this button will appear next to every comment
 <img src="docs/usage.gif">
 
 ### Changing the language
@@ -29,16 +31,15 @@ and change the Target Language. Alternatively, if using the plugin via a JavaScr
 [But what letters should I set it to?](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
 
 ## Installation
-[Download](../../releases/latest/) and extract the newest release.
+When using chrome or any chromium based browser, simply download the extension from the webstore.
 
+## Manual Install
 ### Javascript injector
-Since this script was made to be injected from the browsers developer console. One can simply use a [Javascript injector](https://github.com/Lor-Saba/Code-Injector). This is also the recommended method for firefox users.
-Use this pattern
+Since this plugin was developed using just a simple content script, one can simply inject it using a [Javascript injector](https://github.com/Lor-Saba/Code-Injector).
+This is also the recommended method for firefox users. Use this pattern: `www\.youtube\.com`
 <img src="docs/injector.png">
-`www\.youtube\.com`
 
 ### Chromium Browsers
-
 Open the following url in your browser
 <table>
 	<tr>
@@ -68,8 +69,7 @@ Navigate to the folder you extracted to and click `open`. Disable `Developer mod
 
 #### Firefox
 <img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg">
-
-Use any javascript injector and paste `inject.js` into it.
+Try the Manual Install using a JavaScript injector
 
 ---
 
