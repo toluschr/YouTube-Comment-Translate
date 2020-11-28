@@ -22,7 +22,7 @@
 <!-- vim-markdown-toc -->
 
 ## Usage
-After installing, this button will appear next to every comment
+After installing, this button will appear next to every comment</br>
 <img src="docs/usage.gif">
 
 ### Changing the language
