@@ -15,9 +15,8 @@
 * [Installation](#installation)
 * [Manual Install](#manual-install)
 	* [Javascript injector](#javascript-injector)
-	* [Chromium Browsers](#chromium-browsers)
-	* [Other Browsers](#other-browsers)
-		* [Firefox](#firefox)
+	* [Chromium](#chromium)
+	* [Other](#other)
 
 <!-- vim-markdown-toc -->
 
@@ -39,7 +38,7 @@ Since this plugin was developed using just a simple content script, one can simp
 This is also the recommended method for firefox users. Use this pattern: `www\.youtube\.com`
 <img src="docs/injector.png">
 
-### Chromium Browsers
+### Chromium
 Open the following url in your browser
 <table>
 	<tr>
@@ -65,11 +64,17 @@ Open the following url in your browser
 Enable `Developer mode` and click on `Load unpacked`.
 Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
 
-### Other Browsers
-
-#### Firefox
-<img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg">
-Try the Manual Install using a JavaScript injector
+### Other
+<table>
+	<tr>
+		<td align="right"><b>Browser</b></td>
+		<td align="center"><img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/master/Papirus/48x48/apps/firefox.svg"></td>
+	</tr>
+	<tr>
+		<td align="right"><b>Install</b></td>
+		<td align="center">JavaScript Injector</td>
+	</tr>
+</table>
 
 ---
 
