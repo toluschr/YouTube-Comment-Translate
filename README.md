@@ -4,19 +4,19 @@
 <p align="center">
 	</br></br>
 		<a href="https://chrome.google.com/webstore/detail/youtube-comment-translate/alaejlmlpgcffloicejpccebbeeibemo">
-			<img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png">
+			<img src="docs/ChromeWebStore_BadgeWBorder_v2_206x58.png">
 	</br></br>
 </p>
 
 <!-- vim-markdown-toc GFM -->
 
 * [Usage](#usage)
-	* [Changing the language](#changing-the-language)
+    * [Changing the language](#changing-the-language)
 * [Installation](#installation)
 * [Manual Install](#manual-install)
-	* [Javascript injector](#javascript-injector)
-	* [Chromium](#chromium)
-	* [Other](#other)
+    * [Javascript injector](#javascript-injector)
+    * [Chromium](#chromium)
+    * [Other](#other)
 
 <!-- vim-markdown-toc -->
 
