@@ -5,7 +5,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"*://www.youtube.com/*"
+				"*://*.youtube.com/*"
 			],
 			"run_at": "document_end",
 			"js": ["inject.js"]
@@ -13,7 +13,7 @@
 	],
 	"permissions": [
 		"storage",
-		"*://www.youtube.com/*"
+		"*://*.youtube.com/*"
 	],
 	"options_ui": {
 		"page": "options.html",
