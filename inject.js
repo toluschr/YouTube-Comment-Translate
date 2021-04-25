@@ -71,7 +71,7 @@
 	function inject () {
 		let comments = document.querySelector(QS_COMMENTS);
 
-		if (comments == null) setTimeout(inject, 100);
+		if (comments == null) setTimeout(inject, 50);
 		else addSectionListener(comments);
 	}
 
