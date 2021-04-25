@@ -1,6 +1,6 @@
 {
 	"name": "YouTube™ Comment Translate",
-	"version": "0.8.1",
+	"version": "0.8.2",
 	"description": "Automatically translate YouTube comments using the Google-Translate API",
 	"content_scripts": [
 		{
