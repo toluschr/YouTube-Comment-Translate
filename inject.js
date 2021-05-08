@@ -92,7 +92,7 @@
 
 				if (isReply || replies == null) return;
 				addSectionListener(replies.querySelector(QS_LOADED_REPLIES), true);
-			}, 1);
+			}, 10);
 		});
 	}
 })();
