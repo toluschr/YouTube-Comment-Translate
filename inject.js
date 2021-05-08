@@ -1,7 +1,7 @@
 (function main () {
 	function TranslateButton_SetState() {
 		if (this.innerText == TRANSLATE_TEXT) {
-			this._text.innerText = this._newtext;
+			this._text.innerHTML = this._newhtml.outerHTML;
 			this.innerText = UNDO_TEXT;
 			this.onclick = this._set_state;
 		} else {
@@ -14,21 +14,22 @@
 		this.onclick = undefined;
 		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURI(this._text.innerText)}`)
 			.then(response => response.json()).then(json => {
-				for (let i = 0; i < json[0].length; i++) this._newtext += json[0][i][0];
+				for (let i = 0; i < json[0].length; i++) this._newhtml.innerText += json[0][i][0];
 				this._set_state();
 			});
 	}
 
 	function TranslateButton(main) {
 		let tb = document.createElement("a");
-		tb.classList = "yt-simple-endpoint style-scope yt-formatted-string";
 		tb.id = "translate-button";
 		tb.style = "margin-left: 5px";
 		tb._text = main.querySelector(QS_CONTENT_TEXT);
 		tb._oldhtml = tb._text.innerHTML;
-		tb._newtext = "";
-		tb._translate = TranslateButton_Translate;
+		tb._newhtml = document.createElement("span");
 		tb._set_state = TranslateButton_SetState;
+
+		tb._newhtml.classList = "style-scope yt-formatted-string";
+		tb.classList = "yt-simple-endpoint style-scope yt-formatted-string";
 
 		tb.innerText = TRANSLATE_TEXT;
 		tb.onclick = TranslateButton_Translate;
