@@ -28,7 +28,7 @@
 		tb._newhtml = document.createElement("span");
 		tb._set_state = TranslateButton_SetState;
 
-		tb._newhtml.classList = "style-scope yt-formatted-string";
+		tb._newhtml.classList = "style-scope yt-formatted-string translate-text";
 		tb.classList = "yt-simple-endpoint style-scope yt-formatted-string";
 
 		tb.innerText = TRANSLATE_TEXT;
@@ -53,6 +53,8 @@
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string";
 	// From commentThreadRenderer
 	const QS_REPLIES_RENDERER = "#replies>.style-scope";
+	// From main
+	const QS_TRANSLATE_TEXT = ".translate-text";
 
 	/* User settings */
 	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
@@ -88,6 +90,9 @@
 
 				let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
 				if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
+
+				let em = main.querySelector(QS_TRANSLATE_TEXT);
+				if (em != null) em.parentNode.removeChild(em);
 
 				main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
 
