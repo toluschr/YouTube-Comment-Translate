@@ -64,24 +64,27 @@
 		const observerConfig = {childList: true, subtree: true};
 		const commentObserver = new MutationObserver(e => {
 			for (let mut of e) {
-				if (mut.target.id != "contents") continue;
+				if (mut.target.id == "comments") {
+					commentObserver.disconnect();
+					commentObserver.observe(mut.target, observerConfig);
+				} else if (mut.target.id == "contents") {
+					for (let n of mut.addedNodes) {
+						let main = n.querySelector("#body>#main");
+						if (!main) continue;
 
-				for (let n of mut.addedNodes) {
-					let main = n.querySelector("#body>#main");
-					if (!main) continue;
+						let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
 
-					let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
+						if (oldTb != null) {
+							oldTb.parentNode.removeChild(oldTb);
+							if (oldTb._newhtml.parentNode)
+								oldTb._newhtml.parentNode.removeChild(oldTb._newhtml);
+						}
 
-					if (oldTb != null) {
-						oldTb.parentNode.removeChild(oldTb);
-						if (oldTb._newhtml.parentNode)
-							oldTb._newhtml.parentNode.removeChild(oldTb._newhtml);
+						let em = main.querySelector(QS_TRANSLATE_TEXT);
+						if (em != null) em.parentNode.removeChild(em);
+
+						main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
 					}
-
-					let em = main.querySelector(QS_TRANSLATE_TEXT);
-					if (em != null) em.parentNode.removeChild(em);
-
-					main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
 				}
 			}
 		});
