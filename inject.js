@@ -3,7 +3,6 @@
 		if (this.innerText == TRANSLATE_TEXT) {
 			this._text.innerHTML = this._newhtml.outerHTML;
 			this.innerText = UNDO_TEXT;
-			this.onclick = this._set_state;
 		} else {
 			this._text.innerHTML = this._oldhtml;
 			this.innerText = TRANSLATE_TEXT;
@@ -11,7 +10,8 @@
 	}
 
 	function TranslateButton_Translate() {
-		this.onclick = undefined;
+		this._oldhtml = this._text.innerHTML;
+		this.onclick = this._set_state;
 		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._text.innerText)}`)
 			.then(response => response.json()).then(json => {
 				for (let i = 0; i < json[0].length; i++) this._newhtml.innerText += json[0][i][0].replace('\n', ' ');
@@ -24,7 +24,6 @@
 		tb.id = "translate-button";
 		tb.style = "margin-left: 5px";
 		tb._text = main.querySelector(QS_CONTENT_TEXT);
-		tb._oldhtml = tb._text.innerHTML;
 		tb._newhtml = document.createElement("span");
 		tb._set_state = TranslateButton_SetState;
 
@@ -62,20 +61,22 @@
 	/* Functions */
 	// Inject as soon as the comment section was loaded
 	function inject () {
-		let observerConfig = {childList: true, subtree: true};
-
-		let commentObserver = new MutationObserver(e => {
+		const observerConfig = {childList: true, subtree: true};
+		const commentObserver = new MutationObserver(e => {
 			for (let mut of e) {
-				if (mut.target.id == "comments") {
-					commentObserver.disconnect();
-					commentObserver.observe(mut.target, observerConfig);
-				}
+				if (mut.target.id != "contents") continue;
 
-				if (mut.target.tagName.toLowerCase() == "ytd-comment-renderer") {
-					let main = mut.target.querySelector("#body>#main")
+				for (let n of mut.addedNodes) {
+					let main = n.querySelector("#body>#main");
+					if (!main) continue;
 
 					let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
-					if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
+
+					if (oldTb != null) {
+						oldTb.parentNode.removeChild(oldTb);
+						if (oldTb._newhtml.parentNode)
+							oldTb._newhtml.parentNode.removeChild(oldTb._newhtml);
+					}
 
 					let em = main.querySelector(QS_TRANSLATE_TEXT);
 					if (em != null) em.parentNode.removeChild(em);
