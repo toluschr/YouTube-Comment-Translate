@@ -37,22 +37,12 @@
 	}
 
 	/* Query Selectors */
-	// From document
-	const QS_COMMENTS = "ytd-comments>ytd-item-section-renderer>div#contents, #loaded-comments";
-	// From "ytd-comment-thread-renderer"
-	const QS_COMMENT_MAIN = "#comment>#body>#main";
-	// From "ytd-comment-thread-renderer"
-	const QS_REPLY_MAIN = "#body>#main";
-	// From repliesRenderer
-	const QS_LOADED_REPLIES = "#expander>#expander-contents>#loaded-replies";
 	// From main
 	const QS_TRANSLATE_BUTTON = "#header>#header-author>yt-formatted-string>#translate-button";
 	// From main
 	const QS_CONTENT_TEXT = "#expander>#content>#content-text";
 	// From main
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string";
-	// From commentThreadRenderer
-	const QS_REPLIES_RENDERER = "#replies>.style-scope";
 	// From main
 	const QS_TRANSLATE_TEXT = ".translate-text";
 
@@ -64,7 +54,7 @@
 			TRANSLATE_TEXT = items.translate_text;
 			UNDO_TEXT = items.undo_text;
 			TARGET = items.target_language;
-			window.addEventListener("load", inject);
+			inject();
 		});
 	else
 		inject();
@@ -72,33 +62,29 @@
 	/* Functions */
 	// Inject as soon as the comment section was loaded
 	function inject () {
-		let comments = document.querySelector(QS_COMMENTS);
+		let observerConfig = {childList: true, subtree: true};
 
-		if (comments == null) setTimeout(inject, 50);
-		else addSectionListener(comments);
-	}
+		let commentObserver = new MutationObserver(e => {
+			for (let mut of e) {
+				if (mut.target.id == "comments") {
+					commentObserver.disconnect();
+					commentObserver.observe(mut.target, observerConfig);
+				}
 
-	// Listen for new Comments
-	function addSectionListener(section, isReply = false) {
-		section.addEventListener("DOMNodeInserted", (event) => {
-			if (event.relatedNode != section || !(event.target instanceof HTMLElement))
-				return;
+				if (mut.target.tagName.toLowerCase() == "ytd-comment-renderer") {
+					let main = mut.target.querySelector("#body>#main")
 
-			setTimeout(() => {
-				let main = event.target.querySelector(isReply ? QS_REPLY_MAIN : QS_COMMENT_MAIN);
-				let replies = event.target.querySelector(QS_REPLIES_RENDERER);
+					let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
+					if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
 
-				let oldTb = main.querySelector(QS_TRANSLATE_BUTTON);
-				if (oldTb != null) oldTb.parentNode.removeChild(oldTb);
+					let em = main.querySelector(QS_TRANSLATE_TEXT);
+					if (em != null) em.parentNode.removeChild(em);
 
-				let em = main.querySelector(QS_TRANSLATE_TEXT);
-				if (em != null) em.parentNode.removeChild(em);
-
-				main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
-
-				if (isReply || replies == null) return;
-				addSectionListener(replies.querySelector(QS_LOADED_REPLIES), true);
-			}, 10);
+					main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
+				}
+			}
 		});
+
+		commentObserver.observe(document, observerConfig);
 	}
 })();
