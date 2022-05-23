@@ -1,23 +1,17 @@
 {
-	"name": "YouTube™ Comment Translate",
-	"version": "1.1.2",
-	"description": "Automatically translate YouTube comments using the Google-Translate API",
-	"content_scripts": [
-		{
-			"matches": [
-				"*://*.youtube.com/*"
-			],
-			"run_at": "document_end",
-			"js": ["inject.js"]
-		}
-	],
-	"permissions": [
-		"storage",
-		"*://*.youtube.com/*"
-	],
-	"options_ui": {
-		"page": "options.html",
-		"chrome_style": true
-	},
-	"manifest_version": 2
+  "name": "YouTube\u2122 Comment Translate",
+  "version": "1.2.0",
+  "description": "Automatically translate YouTube comments using the Google-Translate API",
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "run_at": "document_end",
+      "js": ["inject.js"]
+    }
+  ],
+  "permissions": ["storage"],
+  "options_ui": { "page": "options.html" },
+  "manifest_version": 3,
+  "content_security_policy": {},
+  "host_permissions": ["*://*.youtube.com/*"]
 }
