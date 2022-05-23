@@ -1,13 +1,16 @@
 (function main () {
+	function ReplaceNode(a, b) {
+		a.parentNode.appendChild(b);
+		a.parentNode.removeChild(a);
+	}
+
 	function TranslateButton_SetState() {
-		if (this._otext.parentNode) {
-			this._otext.parentNode.appendChild(this._ntext);
-			this._otext.parentNode.removeChild(this._otext);
-			this.innerText = UNDO_TEXT;
-		} else {
-			this._ntext.parentNode.appendChild(this._otext);
-			this._ntext.parentNode.removeChild(this._ntext);
+		if (this._ntext.parentNode !== null) {
+			ReplaceNode(this._ntext, this._otext);
 			this.innerText = TRANSLATE_TEXT;
+		} else {
+			ReplaceNode(this._otext, this._ntext);
+			this.innerText = UNDO_TEXT;
 		}
 	}
 
@@ -20,29 +23,35 @@
 			});
 	}
 
+	function ResetTranslateButton(tb) {
+		if (tb._ntext.parentNode !== null) ReplaceNode(tb._ntext, tb._otext);
+
+		tb._ntext.innerText = "";
+		tb.innerText = TRANSLATE_TEXT;
+		tb.onclick = TranslateButton_Translate;
+	}
+
 	function TranslateButton(main) {
 		let tb = document.createElement("a");
 		tb.id = "translate-button";
 		tb.style = "margin-left: 5px";
-		tb._otext = main.querySelector(QS_CONTENT_TEXT);
-		tb._ntext = document.createElement("div");
-
-		tb._ntext.classList = "style-scope ytd-comment-renderer translate-text yt-formatted-string";
-		tb._ntext.id = "content-text";
-
 		tb.classList = "yt-simple-endpoint style-scope yt-formatted-string";
 
-		tb.innerText = TRANSLATE_TEXT;
-		tb.onclick = TranslateButton_Translate;
+		tb._otext = main.querySelector(QS_CONTENT_TEXT);
+		tb._otext.addEventListener("DOMSubtreeModified", _ => ResetTranslateButton(tb));
+
+		tb._ntext = document.createElement("div");
+		tb._ntext.id = "content-text";
+		tb._ntext.classList = "style-scope ytd-comment-renderer translate-text yt-formatted-string";
+
+		ResetTranslateButton(tb);
 		return tb;
 	}
 
 	/* Query Selectors */
 	// From main
 	const QS_TRANSLATE_BUTTON = "#header>#header-author>yt-formatted-string>#translate-button";
-	// From main
 	const QS_CONTENT_TEXT = "#expander>#content>#content-text";
-	// From main
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string";
 
 	/* User settings */
@@ -74,14 +83,7 @@
 
 						let tb = main.querySelector(QS_TRANSLATE_BUTTON);
 						if (tb != null) {
-							if (tb._ntext.parentNode) {
-								tb._ntext.parentNode.appendChild(tb._otext);
-								tb._ntext.parentNode.removeChild(tb._ntext);
-								tb.innerText = TRANSLATE_TEXT;
-							}
-
-							tb._ntext.innerText = "";
-							tb.onclick = TranslateButton_Translate;
+							ResetTranslateButton(tb);
 						} else {
 							main.querySelector(QS_BUTTON_CONTAINER).appendChild(TranslateButton(main));
 						}
