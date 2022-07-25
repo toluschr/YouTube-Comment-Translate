@@ -41,6 +41,7 @@
 		tb._otext.addEventListener("DOMSubtreeModified", _ => ResetTranslateButton(tb));
 
 		tb._ntext = document.createElement("div");
+		tb._ntext.style.whiteSpace = "pre-wrap";
 		tb._ntext.id = "content-text";
 		tb._ntext.classList = "style-scope ytd-comment-renderer translate-text yt-formatted-string";
 
