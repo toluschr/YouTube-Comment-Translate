@@ -13,7 +13,7 @@ function load()
 {
 	chrome.storage.sync.get({translate_text: "translate",
 	                              undo_text: "undo",
-	                        target_language: "en"}, items => {
+	                        target_language: navigator.language || navigator.userLanguage}, items => {
 		translate_text.value = items.translate_text;
 		undo_text.value = items.undo_text;
 		target_language.value = items.target_language;

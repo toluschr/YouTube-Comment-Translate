@@ -56,7 +56,7 @@
 	const QS_BUTTON_CONTAINER = "#header>#header-author>yt-formatted-string";
 
 	/* User settings */
-	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = "en";
+	var TRANSLATE_TEXT = "translate", UNDO_TEXT = "undo", TARGET = navigator.language || navigator.userLanguage;
 
 	if (typeof(chrome) !== "undefined" && typeof(chrome.storage) != "undefined")
 		chrome.storage.sync.get({translate_text: TRANSLATE_TEXT, undo_text: UNDO_TEXT, target_language: TARGET}, items => {
