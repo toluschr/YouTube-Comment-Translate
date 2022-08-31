@@ -74,10 +74,10 @@
 		const observerConfig = {childList: true, subtree: true};
 		const commentObserver = new MutationObserver(e => {
 			for (let mut of e) {
-				if (mut.target.id == "comments") {
+				/*if (mut.target.tagName.toLowerCase() == "ytd-comments") {
 					commentObserver.disconnect();
 					commentObserver.observe(mut.target, observerConfig);
-				} else if (mut.target.id == "contents") {
+				} else */if (mut.target.id == "contents") {
 					for (let n of mut.addedNodes) {
 						let main = n.querySelector("#body>#main");
 						if (!main) continue;
