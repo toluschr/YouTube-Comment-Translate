@@ -1,38 +1,53 @@
-<html>
-	<head></head>
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Youtube Comment Translator Settings</title>
+	</head>
 
 	<body>
 		<div class="options">
 			<div>
-				<h2>Translate Text</h2>
-				<input id="translate_text"/><br>
+				<h2>Text to display when showing original comment.</h2>
+				<input id="translate_text" /><br>
 			</div>
 			<div>
-				<h2>Undo Text</h2>
-				<input id="undo_text"/><br>
+				<h2>Text to display when showing translated comment</h2>
+				<input id="undo_text" /><br>
 			</div>
 			<div>
 				<h2>Target Language (Country Code)</h2>
-				<input id="target_language"/><br>
+				<input id="target_language" /><br>
 			</div>
 
 			<button id="save">save</button>
 		</div>
 
 		<script src="options.js"></script>
-<style>
-.options {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
+		<style>
+			.options {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
 
-.options > * {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 0px 5px;
-}
-</style>
+			.options>* {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 0px 5px;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				body {
+					background-color: #1e1e1e;
+					color: #fff;
+				}
+			}
+		</style>
 	</body>
+
 </html>
