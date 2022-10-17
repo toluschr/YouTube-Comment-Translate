@@ -1,3 +1,8 @@
+// comments are displayed in either
+// 1) <yt-formatted-string id="content-text">"TEXT"</yt-formatted-string>
+// or
+// 2) <yt-formatted-string id="content-text"><span>"TEXTLINE1"</span><span></span><span>"TEXTLINE2"</span></yt-formatted-string>
+
 (function main () {
 	function ReplaceNode(a, b) {
 		a.parentNode.appendChild(b);
@@ -16,9 +21,12 @@
 
 	function TranslateButton_Translate() {
 		this.onclick = TranslateButton_SetState;
-		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
+		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.outerHTML)}`)
 			.then(response => response.json()).then(json => {
-				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
+				//for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
+				let translatedHTML = "";
+				for (let i = 0; i < json[0].length; i++) baseTranslationString += json[0][i][0];
+				this._ntext.outerHTML = translatedHTML;
 				this.onclick();
 			});
 	}
