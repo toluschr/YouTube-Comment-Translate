@@ -8,8 +8,6 @@
 	</br></br>
 </p>
 
-<!-- vim-markdown-toc GFM -->
-
 * [Usage](#usage)
     * [Changing the language](#changing-the-language)
 * [Installation](#installation)
@@ -18,28 +16,44 @@
     * [Chromium](#chromium)
     * [Other](#other)
 
-<!-- vim-markdown-toc -->
-
 ## Usage
-After installing, this button will appear next to every comment</br>
+
+Reload any open YouTube page after installation. A translate button will then appear in the header of every comment. </br>
+
 <img src="docs/usage.gif">
 
 ### Changing the language
-The default language is english (en). To change it, open the plugins setting page (`chrome://extensions/?options=alaejlmlpgcffloicejpccebbeeibemo`)
-and change the Target Language. Alternatively, if using the plugin via a JavaScript injector, manually edit `inject.js` and change line 5 (`TARGET_LANGUAGE`) to the desired language.
-[But what letters should I set it to?](https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html)
+
+By default, the extension translates to english (en). If the extension was
+installed from the crhome webstore, this can be configured by changing the Traget
+Language in the settings here: `chrome://extensions/?options=alaejlmlpgcffloicejpccebbeeibemo`.
+
+When using a JavaScript injector as the installation method, manually edit
+`inject.js` and change line 5 (`TARGET_LANGUAGE`) to the desired language.
+
+A list of supported languages can be found here: <https://www.gnu.org/software/gettext/manual/html_node/Usual-Language-Codes.html>
 
 ## Installation
-When using chrome or any chromium based browser, simply download the extension from the webstore.
+
+When using chrome or any chromium based browser, it is recommended to install
+the extension directly from the chrome webstore.
 
 ## Manual Install
+
 ### Javascript injector
-Since this plugin was developed using just a simple content script, one can simply inject it using a [Javascript injector](https://github.com/Lor-Saba/Code-Injector).
-This is also the recommended method for firefox users. Use this pattern: `www\.youtube\.com`
+
+Since this plugin uses a content-script, it should work on any browser that
+supports a [Javascript injector](https://github.com/Lor-Saba/Code-Injector).
+
+This is also the recommended method for firefox users. Use the following url
+pattern: `www\.youtube\.com`
+
 <img src="docs/injector.png">
 
 ### Chromium
-Open the following url in your browser
+
+Open the correct url for your browser:
+
 <table>
 	<tr>
 		<td align="right"><b>Browser</b></td>
@@ -65,6 +79,7 @@ Enable `Developer mode` and click on `Load unpacked`.
 Navigate to the folder you extracted to and click `open`. Disable `Developer mode`.
 
 ### Other
+
 <table>
 	<tr>
 		<td align="right"><b>Browser</b></td>
