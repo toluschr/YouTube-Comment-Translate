@@ -18,7 +18,9 @@
 		this.onclick = TranslateButton_SetState;
 		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
 			.then(response => response.json()).then(json => {
-				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
+				for (let i = 0; i < json[0].length; i++) {
+                    this._ntext.innerHTML += json[0][i][0].replace(/\n/g, '<br>'); // Изменение здесь
+                }
 				this.onclick();
 			});
 	}
@@ -26,7 +28,7 @@
 	function ResetTranslateButton(tb) {
 		if (tb._ntext.parentNode !== null) ReplaceNode(tb._ntext, tb._otext);
 
-		tb._ntext.innerText = "";
+		tb._ntext.innerHTML = ""; // Используем innerHTML для очистки
 		tb.innerText = TRANSLATE_TEXT;
 		tb.onclick = TranslateButton_Translate;
 	}
@@ -41,9 +43,16 @@
 		tb._otext.addEventListener("DOMSubtreeModified", _ => ResetTranslateButton(tb));
 
 		tb._ntext = document.createElement("div");
-		tb._ntext.style.whiteSpace = "pre-wrap";
+		tb._ntext.style.whiteSpace = "pre-wrap"; // Это все еще важно для пробелов и если вдруг \n начнут приходить
 		tb._ntext.id = "content-text";
 		tb._ntext.classList = "style-scope ytd-comment-renderer translate-text yt-formatted-string";
+
+		// Скопировать стили шрифта с _otext на _ntext
+		const otextStyles = window.getComputedStyle(tb._otext);
+		tb._ntext.style.fontSize = otextStyles.fontSize;
+		tb._ntext.style.fontWeight = otextStyles.fontWeight;
+		tb._ntext.style.fontFamily = otextStyles.fontFamily;
+		tb._ntext.style.lineHeight = otextStyles.lineHeight;
 
 		ResetTranslateButton(tb);
 		return tb;
