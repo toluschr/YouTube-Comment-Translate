@@ -18,7 +18,7 @@
 		this.onclick = TranslateButton_SetState;
 		fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${TARGET}&dt=t&q=${encodeURIComponent(this._otext.innerText)}`)
 			.then(response => response.json()).then(json => {
-				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0].replace('\n', ' ');
+				for (let i = 0; i < json[0].length; i++) this._ntext.innerText += json[0][i][0];
 				this.onclick();
 			});
 	}
