@@ -40,7 +40,12 @@
 		tb._otext = main.querySelector(QS_CONTENT_TEXT);
 		tb._otext.addEventListener("DOMSubtreeModified", _ => ResetTranslateButton(tb));
 
+		let otextStyles = window.getComputedStyle(tb._otext);
 		tb._ntext = document.createElement("div");
+		tb._ntext.style.fontSize = otextStyles.fontSize;
+		tb._ntext.style.fontWeight = otextStyles.fontWeight;
+		tb._ntext.style.fontFamily = otextStyles.fontFamily;
+		tb._ntext.style.lineHeight = otextStyles.lineHeight;
 		tb._ntext.style.whiteSpace = "pre-wrap";
 		tb._ntext.id = "content-text";
 		tb._ntext.classList = "style-scope ytd-comment-renderer translate-text yt-formatted-string";
